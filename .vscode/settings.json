@@ -1,0 +1,7 @@
+{
+  "git.ignoreLimitWarning": true,
+  "prettier.eslintIntegration": true,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "javascript.suggestionActions.enabled": false
+}
