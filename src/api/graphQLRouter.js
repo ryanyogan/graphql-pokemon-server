@@ -7,6 +7,7 @@ import { pokemonType, pokemonResolvers } from './resources/pokemon';
 const baseSchema = `
   schema {
     query: Query
+    mutation: Mutation
   }
 `;
 

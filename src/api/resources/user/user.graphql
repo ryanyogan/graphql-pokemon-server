@@ -9,6 +9,6 @@ input UpdatedUser {
   username: String
 }
 
-type Query {
+extend type Query {
   getMe: User!
 }

@@ -11,9 +11,20 @@ type Pokemon {
   imageUrl: String!
 }
 
-extend type Query {
+input CreatedPokemon {
+  number: Int
+  name: String!
+  classification: String!
+  imageUrl: String!
+}
+
+type Query {
   # Retreive a single Pokemon based on its' ID
   Pokemon(id: ID!): Pokemon
   # Retreive all Pokemon!
   getAllPokemons: [Pokemon]!
+}
+
+type Mutation {
+  createPokemon(input: CreatedPokemon!): Pokemon
 }
