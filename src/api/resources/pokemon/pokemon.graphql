@@ -1,0 +1,19 @@
+type Pokemon {
+  # Every pokemon has a unique ID, in our case, a MongoDB _ID
+  id: ID!
+  # The Pokedex "Number," also know as their UUID
+  number: Int
+  # The name of our little friend!
+  name: String!
+  # The classification is the "Type" of pokemon
+  classification: String!
+  # The full path to the CDN hosting Pokemon art from the Pokedex
+  imageUrl: String!
+}
+
+extend type Query {
+  # Retreive a single Pokemon based on its' ID
+  Pokemon(id: ID!): Pokemon
+  # Retreive all Pokemon!
+  getAllPokemons: [Pokemon]!
+}
