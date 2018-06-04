@@ -1,14 +1,22 @@
+# This represents all of the possible fields (qualities) of
+# one unique Pokemon
 type Pokemon {
   # Every pokemon has a unique ID, in our case, a MongoDB _ID
   id: ID!
-  # The Pokedex "Number," also know as their UUID
-  number: Int
   # The name of our little friend!
   name: String!
   # The classification is the "Type" of pokemon
   classification: String!
   # The full path to the CDN hosting Pokemon art from the Pokedex
-  imageUrl: String!
+  img: String!
+  # The "Type" of Pokemon, generally a combination of types.
+  type: [String]!
+  # The Height of the Pokemon in Inches
+  height: String!
+  # The Weight of the Pokemon in (who knows?)
+  weight: String!
+  # The "Happiness" of a Pokemon out of 100%
+  happiness: String!
 }
 
 input CreatedPokemon {

@@ -16,6 +16,12 @@ export const pokemonResolvers = {
     Pokemon: getOnePokemon,
     getAllPokemons,
   },
+  Pokemon: {
+    classification: parent => parent.misc.classification,
+    height: parent => parent.misc.height,
+    weight: parent => parent.misc.weight,
+    happiness: parent => parent.misc.happiness,
+  },
   Mutation: {
     createPokemon,
   },

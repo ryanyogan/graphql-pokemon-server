@@ -8,7 +8,7 @@ const baseConfiguration = {
   port: 3000,
   secrets: {},
   db: {
-    url: 'mongodb://localhost/pokemon-team-builder',
+    url: 'mongodb://localhost/pokemon',
   },
   disableAuth: true,
 };

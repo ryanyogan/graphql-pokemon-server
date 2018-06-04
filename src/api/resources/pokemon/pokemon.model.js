@@ -1,19 +1,32 @@
 import mongoose from 'mongoose';
 
 export const schema = {
-  number: Number,
   name: {
     type: String,
     required: [true, 'A pokemon must have a name'],
     unique: true,
   },
-  classification: {
-    type: String,
-    required: true,
-  },
-  imageUrl: {
+  img: {
     type: String,
     required: [true, 'A pokemon must have an image associated'],
+  },
+  type: [
+    {
+      type: String,
+    },
+  ],
+  stats: {
+    hp: Number,
+    attack: String,
+    defense: String,
+    spattack: String,
+    spdefense: String,
+    speed: Number,
+  },
+  misc: {
+    classification: String,
+    height: String,
+    weight: String,
   },
 };
 
