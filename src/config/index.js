@@ -8,7 +8,7 @@ const baseConfiguration = {
   port: 3000,
   secrets: {},
   db: {
-    url: 'mongodb://localhost/pokemon',
+    url: `mongodb://dev-academy:pr0c0re@ds247830.mlab.com:47830/pokemon-prod`,
   },
   disableAuth: true,
 };

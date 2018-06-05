@@ -17,6 +17,28 @@ type Pokemon {
   weight: String!
   # The "Happiness" of a Pokemon out of 100%
   happiness: String!
+
+  damages: Damage!
+}
+
+type Damage {
+  normal: String
+  fire: String
+  water: String
+  electric: String
+  grass: String
+  ice: String
+  fight: String
+  poison: String
+  ground: String
+  flying: String
+  psychic: String
+  bug: String
+  rock: String
+  ghost: String
+  dragon: String
+  dark: String
+  steel: String
 }
 
 input CreatedPokemon {

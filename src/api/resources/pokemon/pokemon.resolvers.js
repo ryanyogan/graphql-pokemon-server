@@ -17,10 +17,36 @@ export const pokemonResolvers = {
     getAllPokemons,
   },
   Pokemon: {
+    // I do not want the user to query misc { classification } so here is
+    // how we can handle that, we have the parent (rootValue) as the first arg
+    // which resolves to the Pokemon, now we may drive into the object
+    // This also is saying, hey! we have the data, don't ask for it again, its
+    // in memory!
     classification: parent => parent.misc.classification,
     height: parent => parent.misc.height,
     weight: parent => parent.misc.weight,
     happiness: parent => parent.misc.happiness,
+    // Notice Below, if we wanted to, we could drive down on eaach value
+    // given to us from the parent, the parent in this instance is the (root)
+    // of the Pokemon, with nested data structures such as Pokemon.Misc.Classification, etc..
+
+    // normal: parent => parent.damages.normal,
+    // fire: parent => parent.damages.fire,
+    // water: parent => parent.damages.water,
+    // electric: parent => parent.damages.electric,
+    // grass: parent => parent.damages.grass,
+    // ice: parent => parent.damages.ice,
+    // fight: parent => parent.damages.fight,
+    // poison: parent => parent.damages.poison,
+    // ground: parent => parent.damages.ground,
+    // flying: parent => parent.damages.flying,
+    // psychic: parent => parent.damages.psychic,
+    // bug: parent => parent.damages.bug,
+    // rock: parent => parent.damages.rock,
+    // ghost: parent => parent.damages.ghost,
+    // dragon: parent => parent.damages.dragon,
+    // dark: parent => parent.damages.dark,
+    // steel: parent => parent.damages.steel,
   },
   Mutation: {
     createPokemon,
