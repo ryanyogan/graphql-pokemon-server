@@ -10,6 +10,9 @@ const baseConfiguration = {
   db: {
     url: `mongodb://dev-academy:pr0c0re@ds247830.mlab.com:47830/pokemon-prod`,
   },
+  graphiql: {
+    endpointURL: 'http://localhost:3000/graphql',
+  },
   disableAuth: true,
 };
 

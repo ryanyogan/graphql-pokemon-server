@@ -29,6 +29,12 @@ export const pokemonResolvers = {
     // Notice Below, if we wanted to, we could drive down on eaach value
     // given to us from the parent, the parent in this instance is the (root)
     // of the Pokemon, with nested data structures such as Pokemon.Misc.Classification, etc..
+    // We do not have to do this, if you look here: https://github.com/ryanyogan/graphql-pokemon-server/blob/master/src/api/resources/pokemon/pokemon.graphql#L24
+    // You can see we created a Damage type, GraphQL is smart enough to match the names, and respond
+    // accordingly :)  Looking below now, can you see how we can handle changing a legacy
+    // API request with a response such as data.user_name to userName ?
+    // userName: (parent) => parent.user_name  ...  Is this whole "Graph" thing
+    // starting to click? I told ya "info" was an AST!
 
     // normal: parent => parent.damages.normal,
     // fire: parent => parent.damages.fire,

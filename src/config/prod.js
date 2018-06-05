@@ -1,4 +1,3 @@
-const DB_USER = process.env.DB_USER;
 const DB_SECRET = process.env.DB_SECRET;
 
 export const config = {
@@ -7,7 +6,10 @@ export const config = {
     JWT_SECRET: 'systemofadown',
   },
   db: {
-    url: `mongodb://${DB_USER}:${DB_SECRET}@ds247830.mlab.com:47830/pokemon-prod`,
+    url: `mongodb://dev-academy:${DB_SECRET}@ds247830.mlab.com:47830/pokemon-prod`,
+  },
+  graphiql: {
+    endpointURL: 'https://pokemon-server-aldhrmzdvz.now.sh/graphql',
   },
   disableAuth: true,
 };
