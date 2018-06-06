@@ -17,6 +17,7 @@ const updateTeam = (_, { input }) => {
 
 const teamCount = async (_, { id }) => {
   const team = await Team.findById(id);
+
   return team.pokemons.length;
 };
 
@@ -46,6 +47,7 @@ export const teamResolvers = {
       const { pokemons } = await team
         .populate({ path: 'pokemons', options: { limit } })
         .execPopulate();
+
       return pokemons;
     },
   },

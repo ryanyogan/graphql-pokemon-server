@@ -11,7 +11,7 @@ input NewTeam {
   # The name of the Team you would like to create (required)
   name: String!
   # Optionally you made add Pokemon by their ID's to the team initially
-  pokemons: [ID!]
+  pokemons: [NewPokemon!]
 }
 
 input UpdateTeam {

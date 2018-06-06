@@ -18,6 +18,7 @@ export const pokemonResolvers = {
     // which resolves to the Pokemon, now we may drive into the object
     // This also is saying, hey! we have the data, don't ask for it again, its
     // in memory!
+
     classification: parent => parent.misc.classification,
     height: parent => parent.misc.height,
     weight: parent => parent.misc.weight,
