@@ -17,7 +17,8 @@ type Pokemon {
   weight: String!
   # The "Happiness" of a Pokemon out of 100%
   happiness: String!
-
+  # The level of damage the Pokemon recevies based upon the numeric
+  # values that are provided.
   damages: Damage!
 }
 
@@ -41,11 +42,32 @@ type Damage {
   steel: String
 }
 
+input NewDamage {
+  normal: String
+  fire: String
+  water: String
+  electric: String
+  grass: String
+  ice: String
+  fight: String
+  poison: String
+  ground: String
+  flying: String
+  psychic: String
+  bug: String
+  rock: String
+  ghost: String
+  dragon: String
+  dark: String
+  steel: String
+}
+
 input CreatedPokemon {
   number: Int
   name: String!
   classification: String!
-  imageUrl: String!
+  img: String!
+  damages: NewDamage
 }
 
 type Query {
