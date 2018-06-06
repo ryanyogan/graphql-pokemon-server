@@ -2,12 +2,12 @@ import { Pokemon } from './pokemon.model';
 
 const getOnePokemon = (_, { id }) => Pokemon.findById(id).exec();
 
-const getAllPokemons = () => Pokemon.find({}).exec();
+const getAllPokemons = () =>
+  Pokemon.find({})
+    .limit(20)
+    .exec();
 
-const createPokemon = (_, { input }) => {
-  console.log('INPUT', input);
-  return Pokemon.create(input);
-};
+const createPokemon = (_, { input }) => Pokemon.create(input);
 
 export const pokemonResolvers = {
   Query: {
