@@ -1,0 +1,38 @@
+type Team {
+  # The unique ID of a Team
+  id: ID!
+  # The unique Name of a Team
+  name: String!
+  # All of the Pokemon that a Team contains
+  pokemons: [Pokemon]!
+}
+
+input NewTeam {
+  # The name of the Team you would like to create (required)
+  name: String!
+  # Optionally you made add Pokemon by their ID's to the team initially
+  pokemons: [ID!]
+}
+
+input UpdateTeam {
+  # The ID of the team you would like to update (required)
+  id: ID!
+  # The name of the team (optional)
+  name: String
+  # The ID(s) of Pokemon you would like your team to consist of
+  pokemons: [ID!]
+}
+
+extend type Query {
+  # Returns a single team based on the unique ID (required)
+  Team(id: ID!): Team!
+  # Returns a list of all Teams
+  allTeams: [Team]!
+}
+
+type Mutation {
+  # Creates a new team!
+  Team(input: NewTeam!): Team!
+  # Update a team based on its ID (required)
+  updateTeam(input: UpdateTeam!): Team!
+}

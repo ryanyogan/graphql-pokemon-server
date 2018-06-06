@@ -2,7 +2,7 @@ import { Pokemon } from './pokemon.model';
 
 const getOnePokemon = (_, { id }) => Pokemon.findById(id).exec();
 
-const getAllPokemons = () =>
+const allPokemons = () =>
   Pokemon.find({})
     .limit(20)
     .exec();
@@ -12,7 +12,7 @@ const createPokemon = (_, { input }) => Pokemon.create(input);
 export const pokemonResolvers = {
   Query: {
     Pokemon: getOnePokemon,
-    getAllPokemons,
+    allPokemons,
   },
   Pokemon: {
     // I do not want the user to query misc { classification } so here is

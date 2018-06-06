@@ -1,10 +1,33 @@
 import { Team } from './team.model';
 
-export const teamResolvers = {
-  Query: {},
+const getOneTeam = (_, { id }) => Team.findById(id).exec();
 
-  Mutation: {},
+const allTeams = () => Team.find({}).exec();
+
+const createTeam = (_, { input }) => Team.create(input);
+
+const updateTeam = (_, { input }) => {
+  const { id, ...update } = input;
+
+  return Team.findByIdAndUpdate(id, update, { new: true }).exec();
 };
 
-// document.populate('model_to_populate').execPopulate();
-// returns a promise, constant time lookup, not linear
+export const teamResolvers = {
+  Query: {
+    Team: getOneTeam,
+    allTeams,
+  },
+
+  Mutation: {
+    Team: createTeam,
+    updateTeam,
+  },
+
+  Team: {
+    pokemons: async team => {
+      const { pokemons } = await team.populate('pokemons').execPopulate();
+      console.log('Tracing Nested Types - Currently : ', team); // eslint-disable-line
+      return pokemons;
+    },
+  },
+};
