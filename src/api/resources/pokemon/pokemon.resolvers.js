@@ -2,12 +2,10 @@ import { Pokemon } from './pokemon.model';
 
 const getOnePokemon = (_, { id }) => Pokemon.findById(id).exec();
 
-const allPokemons = () =>
+const allPokemons = (_, { limit = 20 }) =>
   Pokemon.find({})
-    .limit(20)
+    .limit(limit)
     .exec();
-
-const createPokemon = (_, { input }) => Pokemon.create(input);
 
 export const pokemonResolvers = {
   Query: {
@@ -51,8 +49,5 @@ export const pokemonResolvers = {
     // dragon: parent => parent.damages.dragon,
     // dark: parent => parent.damages.dark,
     // steel: parent => parent.damages.steel,
-  },
-  Mutation: {
-    createPokemon,
   },
 };

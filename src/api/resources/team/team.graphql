@@ -4,7 +4,7 @@ type Team {
   # The unique Name of a Team
   name: String!
   # All of the Pokemon that a Team contains
-  pokemons: [Pokemon]!
+  pokemons(limit: Int): [Pokemon]!
 }
 
 input NewTeam {
@@ -27,7 +27,12 @@ extend type Query {
   # Returns a single team based on the unique ID (required)
   Team(id: ID!): Team!
   # Returns a list of all Teams
-  allTeams: [Team]!
+  #
+  # Optional Arguments:
+  # limit, default is 3
+  allTeams(limit: Int): [Team]!
+  # Returns the count of Pokemon for a Team based on the ID provided
+  teamCount(id: ID!): Int!
 }
 
 type Mutation {
@@ -35,4 +40,9 @@ type Mutation {
   Team(input: NewTeam!): Team!
   # Update a team based on its ID (required)
   updateTeam(input: UpdateTeam!): Team!
+
+  # Adds a Pokemon to your team based on the Pokemon ID! Please note
+  # that if you have more than 6 Pokemon (see: teamCount) you will
+  # not be able to additional Pokemon until you remove one.
+  addPokemon(teamId: ID!, pokemonId: ID!): Team!
 }

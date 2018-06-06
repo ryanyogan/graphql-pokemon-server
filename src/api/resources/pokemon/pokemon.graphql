@@ -46,5 +46,8 @@ type Query {
   # Retreive a single Pokemon based on its ID
   Pokemon(id: ID!): Pokemon!
   # Retreive all Pokemon!
-  allPokemons: [Pokemon]!
+  #
+  # Optional Arguments:
+  # limit, default is 20
+  allPokemons(limit: Int): [Pokemon]!
 }
