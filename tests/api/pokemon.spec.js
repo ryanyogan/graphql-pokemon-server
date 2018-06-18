@@ -1,6 +1,7 @@
 /* global beforeAll afterAll afterEach */
 const db = require('../db');
 const { runQuery } = require('../run');
+const pokemonModules = require('../../src/api/pokemon/pokemon.modules');
 const pokemonResolvers = require('../../src/api/pokemon/pokemon.resolvers');
 
 // tests are executed using Jest :~)
@@ -30,6 +31,9 @@ describe('Project', () => {
           {
             models: {
               pokemon: db.models.pokemon,
+            },
+            modules: {
+              pokemon: pokemonModules,
             },
           },
         );
