@@ -1,27 +1,20 @@
-import express from 'express';
-import { graphiqlExpress } from 'apollo-server-express';
-import { express as voyagerMiddleware } from 'graphql-voyager/middleware';
-import setupMiddleware from './middleware';
-import { connect } from './db';
-import { graphQLRouter } from './api';
-import config from './config';
+require('dotenv').config();
 
-const app = express();
+const { GraphQLServer } = require('graphql-yoga');
+const gqlServerConfig = require('./api');
 
-setupMiddleware(app);
-connect();
+require('./db')();
 
-app.use('/graphql', graphQLRouter);
-app.use(
-  '/docs',
-  graphiqlExpress({
-    endpointURL: config.graphiql.endpointURL,
-  }),
+const serverOptions = {
+  port: 5000,
+  endpoint: '/graphql',
+  playground: '/docs',
+  tracing: true,
+  debug: true,
+};
+
+const server = new GraphQLServer(gqlServerConfig);
+
+server.start(serverOptions, ({ port }) =>
+  console.log(`Server on port ${port}`),
 );
-app.use('/voyager', voyagerMiddleware({ endpointUrl: '/graphql' }));
-
-app.use('*', (req, res) =>
-  res.json({ message: 'Please use /graphql when connecting' }),
-);
-
-export default app;

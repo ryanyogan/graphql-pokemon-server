@@ -43,11 +43,6 @@ type Damage {
 }
 
 type Query {
-  # Retreive a single Pokemon based on its ID
-  Pokemon(id: ID!): Pokemon!
-  # Retreive all Pokemon!
-  #
-  # Optional Arguments:
-  # limit, default is 20
+  pokemon(id: ID!): Pokemon!
   allPokemons(limit: Int): [Pokemon]!
 }

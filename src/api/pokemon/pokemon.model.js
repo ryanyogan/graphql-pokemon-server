@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-export const schema = {
+const pokemonSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'A pokemon must have a name'],
@@ -47,8 +47,6 @@ export const schema = {
     height: String,
     weight: String,
   },
-};
+});
 
-const pokemonSchema = new mongoose.Schema(schema);
-
-export const Pokemon = mongoose.model('pokemon', pokemonSchema);
+module.exports = mongoose.model('pokemon', pokemonSchema);

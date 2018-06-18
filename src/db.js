@@ -1,12 +1,7 @@
-import mongoose from 'mongoose';
-import config from './config';
+const mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise;
+const connectToDB = (
+  url = 'mongodb://dev-academy:pr0c0re@ds247830.mlab.com:47830/pokemon-prod',
+) => mongoose.connect(url);
 
-export const connect = () =>
-  mongoose.connect(
-    config.db.url,
-    {
-      useMongoClient: true,
-    },
-  );
+module.exports = connectToDB;
