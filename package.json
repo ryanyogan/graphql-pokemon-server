@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon src/server",
     "test": "NODE_ENV=testing jest --forceExit --runInBand",
-    "start": "NODE_ENV=production node src/server"
+    "start": "NODE_ENV=production node src/server",
+    "deploy": "now --local-config ./now.json"
   },
   "dependencies": {
     "dataloader": "^1.4.0",
