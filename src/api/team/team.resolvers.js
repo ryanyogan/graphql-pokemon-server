@@ -1,6 +1,6 @@
-import { Team } from './team.model';
+const Team = require('./team.model');
 
-const getOneTeam = (_, { id }) => Team.findById(id).exec();
+const team = (_, { id }) => Team.findById(id).exec();
 
 const allTeams = (_, { limit = 3 }) =>
   Team.find({})
@@ -29,15 +29,15 @@ const addPokemon = async (_, { teamId, pokemonId }) => {
   return team;
 };
 
-export const teamResolvers = {
+module.exports = {
   Query: {
-    Team: getOneTeam,
+    team,
     allTeams,
     teamCount,
   },
 
   Mutation: {
-    Team: createTeam,
+    createTeam,
     updateTeam,
     addPokemon,
   },

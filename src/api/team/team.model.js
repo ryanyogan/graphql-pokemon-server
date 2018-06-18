@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-export const schema = {
+const teamSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'A Good team, must have a name'],
@@ -11,8 +11,6 @@ export const schema = {
       ref: 'pokemon',
     },
   ],
-};
+});
 
-const teamSchema = new mongoose.Schema(schema);
-
-export const Team = mongoose.model('team', teamSchema);
+module.exports = mongoose.model('team', teamSchema);
