@@ -5,7 +5,7 @@ const Team = require('./team.model');
 const team = (_, { id }) => Team.findById(id).exec();
 
 // How about here?
-const allTeams = (_, { limit = 3 }) =>
+const allTeams = (_, { limit = 3 }, ctx) =>
   Team.find({})
     .limit(limit)
     .exec();
@@ -50,7 +50,7 @@ module.exports = {
     // Why do we need this?
     id: parent => `${parent._id}`,
     // Can you figure out how to use a DataLoader here?
-    pokemons: async (_, { limit = 10 }) => {
+    pokemons: async (team, { limit = 10 }) => {
       const { pokemons } = await team
         .populate({ path: 'pokemons', options: { limit } })
         .execPopulate();

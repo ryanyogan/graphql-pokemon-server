@@ -10,9 +10,11 @@
     "deploy": "now --local-config ./now.json"
   },
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "dataloader": "^1.4.0",
     "dotenv": "^5.0.1",
     "graphql-yoga": "^1.8.5",
+    "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.5",
     "mongoose": "^5.0.15",
     "nodemon": "^1.17.5"
