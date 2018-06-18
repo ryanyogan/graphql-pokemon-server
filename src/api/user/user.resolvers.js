@@ -48,4 +48,10 @@ module.exports = {
     signup,
     login,
   },
+
+  User: {
+    // Why did we need to create a "virtual" field here?
+    // Template strings are the same as `.toString()`
+    id: user => `${user._id}`,
+  },
 };
