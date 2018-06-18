@@ -20,6 +20,8 @@ type Pokemon {
   # The level of damage the Pokemon recevies based upon the numeric
   # values that are provided.
   damages: Damage!
+  # The team (if availabile) the Pokemon belongs to
+  team: Team
 }
 
 type Damage {

@@ -43,6 +43,7 @@ module.exports = {
   },
 
   Team: {
+    id: team => `${team._id}`,
     pokemons: async (team, { limit = 10 }) => {
       const { pokemons } = await team
         .populate({ path: 'pokemons', options: { limit } })

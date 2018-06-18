@@ -1,4 +1,3 @@
-/* global beforeAll afterAll afterEach */
 const db = require('../db');
 const { runQuery } = require('../run');
 const pokemonModules = require('../../src/api/pokemon/pokemon.modules');
@@ -6,15 +5,15 @@ const pokemonResolvers = require('../../src/api/pokemon/pokemon.resolvers');
 
 // tests are executed using Jest :~)
 
-describe('Project', () => {
-  beforeAll(db.connectToDB);
-  afterAll(db.disconnectDB);
+describe('Pokemon', () => {
+  beforeAll(db.connectToDB); // eslint-disable-line
+  afterAll(db.disconnectDB); // eslint-disable-line
   afterEach(db.cleanDB);
 
   describe('resolvers', () => {
     describe('pokemons', () => {
       test('should resolve correctly', async () => {
-        await db.models.pokemon.create([
+        const expectedPokemon = await db.models.pokemon.create([
           {
             name: 'Test 1',
             img: 'http://img.pokemondb.net/artwork/caterpie.jpg',
@@ -38,6 +37,8 @@ describe('Project', () => {
           },
         );
         expect(results).toHaveLength(2);
+        expect(results[0].name).toEqual(expectedPokemon[0].name);
+        expect(results[1].img).toEqual(expectedPokemon[1].img);
       });
 
       test('should have correct query for all Pokemons', async () => {
@@ -64,7 +65,7 @@ describe('Project', () => {
         const results = await runQuery(query);
         expect(results.errors).toBeUndefined();
         expect(results.data.pokemons).toHaveLength(2);
-        expect(expectedPokemons[0].name).toEqual(results.data.pokemons[0].name);
+        expect(results.data.pokemons[0].name).toEqual(expectedPokemons[0].name);
       });
     });
   });
