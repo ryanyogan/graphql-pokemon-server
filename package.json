@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server",
-    "test": "NODE_ENV=testing jest --forceExit --runInBand"
+    "test": "NODE_ENV=testing jest --forceExit --runInBand",
+    "start": "NODE_ENV=production node src/server"
   },
   "dependencies": {
     "dataloader": "^1.4.0",
