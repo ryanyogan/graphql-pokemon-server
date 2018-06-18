@@ -1,16 +1,18 @@
-const pokemon = (_, { id }, ctx) => ctx.models.pokemon.findById(id).exec();
+const pokemon = (_, { id }, ctx) =>
+  ctx.modules.pokemon.getPokemon({ id, pokemonModel: ctx.models.pokemon });
 
 const allPokemons = (_, { limit = 20 }, ctx) =>
-  ctx.models.pokemon
-    .find({})
-    .limit(limit)
-    .exec();
+  ctx.modules.pokemon.getAllPokemon({
+    limit,
+    pokemonModel: ctx.models.pokemon,
+  });
 
 module.exports = {
   Query: {
     pokemon,
     allPokemons,
   },
+
   Pokemon: {
     classification: parent => parent.misc.classification,
     height: parent => parent.misc.height,

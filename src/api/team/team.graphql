@@ -7,14 +7,14 @@ type Team {
   pokemons(limit: Int): [Pokemon]!
 }
 
-input NewTeam {
+input CreateTeamInput {
   # The name of the Team you would like to create (required)
   name: String!
   # Optionally you made add Pokemon by their ID's to the team initially
   pokemons: [ID!]
 }
 
-input UpdateTeam {
+input UpdateTeamInput {
   # The ID of the team you would like to update (required)
   id: ID!
   # The name of the team (optional)
@@ -37,9 +37,9 @@ extend type Query {
 
 type Mutation {
   # Creates a new team!
-  ceateTeam(input: NewTeam!): Team!
+  createTeam(input: CreateTeamInput!): Team!
   # Update a team based on its ID (required)
-  updateTeam(input: UpdateTeam!): Team!
+  updateTeam(input: UpdateTeamInput!): Team!
 
   # Adds a Pokemon to your team based on the Pokemon ID! Please note
   # that if you have more than 6 Pokemon (see: teamCount) you will

@@ -13,16 +13,18 @@ describe('Project', () => {
   describe('resolvers', () => {
     describe('pokemons', () => {
       test('should resolve correctly', async () => {
-        await db.models.project.create([
+        await db.models.pokemon.create([
           {
             name: 'Test 1',
+            img: 'http://img.pokemondb.net/artwork/caterpie.jpg',
           },
           {
             name: 'Test 2',
+            img: 'http://img.pokemondb.net/artwork/caterpie.jpg',
           },
         ]);
 
-        const results = await pokemonResolvers.Query.pokemons(
+        const results = await pokemonResolvers.Query.allPokemons(
           null,
           { input: {} },
           {
@@ -31,26 +33,34 @@ describe('Project', () => {
             },
           },
         );
-
         expect(results).toHaveLength(2);
       });
 
-      test('should have correct query', async () => {
-        await db.models.pokemon.create([
+      test('should have correct query for all Pokemons', async () => {
+        const expectedPokemons = await db.models.pokemon.create([
           {
             name: 'Test 1',
+            img: 'http://img.pokemondb.net/artwork/caterpie.jpg',
           },
           {
             name: 'Test 2',
+            img: 'http://img.pokemondb.net/artwork/caterpie.jpg',
           },
         ]);
 
         const query = `
+          query AllPokemons {
+            pokemons: allPokemons(limit: 2) {
+              id
+              name
+            }
+          }
         `;
 
         const results = await runQuery(query);
         expect(results.errors).toBeUndefined();
-        expect(results.data.projects).toHaveLength(2);
+        expect(results.data.pokemons).toHaveLength(2);
+        expect(expectedPokemons[0].name).toEqual(results.data.pokemons[0].name);
       });
     });
   });

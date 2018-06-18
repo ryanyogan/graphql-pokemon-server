@@ -8,8 +8,8 @@ const models = {
 };
 
 const cleanDB = async done => {
-  await models.task.remove();
-  await models.project.remove();
+  // await models.team.remove();
+  await models.pokemon.remove();
   done();
 };
 
