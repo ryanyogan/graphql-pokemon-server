@@ -19,6 +19,7 @@ const updateTeam = (_, { input }) => {
 };
 
 const teamCount = async (_, { id }) => {
+  // Hmmm.... Do we need to ask for this information?
   const { pokemons } = await Team.findById(id);
 
   return pokemons.length;
