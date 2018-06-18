@@ -47,6 +47,8 @@ const pokemonSchema = new mongoose.Schema({
     height: String,
     weight: String,
   },
+  // We need to define a relationship back to the Team from a pokemon, for quicker look ups
+  // Can you figure out how to do this?  Take a look at the `/pokemon/pokemon.model.js`
 });
 
 module.exports = mongoose.model('pokemon', pokemonSchema);
