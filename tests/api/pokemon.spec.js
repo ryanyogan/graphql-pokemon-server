@@ -42,7 +42,7 @@ describe('Pokemon', () => {
       });
 
       test('should have correct query for all Pokemons', async () => {
-        const expectedPokemons = await db.models.pokemon.create([
+        await db.models.pokemon.create([
           {
             name: 'Test 1',
             img: 'http://img.pokemondb.net/artwork/caterpie.jpg',
@@ -58,6 +58,7 @@ describe('Pokemon', () => {
             pokemons: allPokemons(limit: 2) {
               id
               name
+              img
             }
           }
         `;
@@ -65,7 +66,9 @@ describe('Pokemon', () => {
         const results = await runQuery(query);
         expect(results.errors).toBeUndefined();
         expect(results.data.pokemons).toHaveLength(2);
-        expect(results.data.pokemons[0].name).toEqual(expectedPokemons[0].name);
+        expect(results.data.pokemons[0].img).toBeDefined();
+        expect(results.data.pokemons[0].type).toBeUndefined();
+        expect(results.data.pokemons[1].name).toEqual('Test 2');
       });
     });
   });

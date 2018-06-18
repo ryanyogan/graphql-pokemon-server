@@ -1,7 +1,10 @@
+// Remove this import
 const Team = require('./team.model');
 
+// Do we really want to do a ODM (Database) lookup in our resolver?
 const team = (_, { id }) => Team.findById(id).exec();
 
+// How about here?
 const allTeams = (_, { limit = 3 }) =>
   Team.find({})
     .limit(limit)
@@ -16,15 +19,15 @@ const updateTeam = (_, { input }) => {
 };
 
 const teamCount = async (_, { id }) => {
-  const team = await Team.findById(id);
+  const { pokemons } = await Team.findById(id);
 
-  return team.pokemons.length;
+  return pokemons.length;
 };
 
 const addPokemon = async (_, { teamId, pokemonId }) => {
-  const team = await Team.findById(teamId);
-  team.pokemons.push(pokemonId);
-  await team.save();
+  const existingTeam = await Team.findById(teamId);
+  existingTeam.pokemons.push(pokemonId);
+  await existingTeam.save();
 
   return team;
 };
@@ -43,8 +46,10 @@ module.exports = {
   },
 
   Team: {
-    id: team => `${team._id}`,
-    pokemons: async (team, { limit = 10 }) => {
+    // Why do we need this?
+    id: parent => `${parent._id}`,
+    // Can you figure out how to use a DataLoader here?
+    pokemons: async (_, { limit = 10 }) => {
       const { pokemons } = await team
         .populate({ path: 'pokemons', options: { limit } })
         .execPopulate();
