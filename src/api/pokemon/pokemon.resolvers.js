@@ -19,7 +19,6 @@ module.exports = {
     pokemon,
     allPokemons,
   },
-
   Pokemon: {
     id: parent => `${parent._id}`,
     classification: parent => parent.misc.classification,

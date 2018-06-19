@@ -3,6 +3,9 @@ const jwt = require('jsonwebtoken');
 const User = require('./user.model');
 
 const signup = async (_, { input: { email, password } }) => {
+  // What is horribly wrong here?  Does it seem like a resolver should
+  // be concerned with how to signup?  Seperation of concerns, this
+  // method would be "not fun" to test ;)
   try {
     const userExists = await User.findOne({ email }).lean();
 
@@ -21,6 +24,8 @@ const signup = async (_, { input: { email, password } }) => {
 };
 
 const login = async (_, { input: { email, password } }) => {
+  // What is horribly wrong here?  Does it seem like a resolver should
+  // be concerned with how to login?  Or simply log a user in?
   try {
     const user = await User.findOne({ email }).lean();
     if (!user) {

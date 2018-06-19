@@ -5,7 +5,7 @@ const Team = require('./team.model');
 const team = (_, { id }) => Team.findById(id).exec();
 
 // How about here?
-const allTeams = (_, { limit = 3 }, ctx) =>
+const allTeams = (_, { limit = 3 }) =>
   Team.find({})
     .limit(limit)
     .exec();
