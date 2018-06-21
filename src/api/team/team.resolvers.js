@@ -1,5 +1,6 @@
 // Remove this import
 const Team = require('./team.model');
+const { authenticate } = require('../../utils/authenticate');
 
 // Do we really want to do a ODM (Database) lookup in our resolver?
 const team = (_, { id }) => Team.findById(id).exec();
@@ -25,12 +26,17 @@ const teamCount = async (_, { id }) => {
   return pokemons.length;
 };
 
-const addPokemon = async (_, { teamId, pokemonId }) => {
-  const existingTeam = await Team.findById(teamId);
-  existingTeam.pokemons.push(pokemonId);
-  await existingTeam.save();
+const addPokemon = async (_, { pokemonId }, ctx) => {
+  const userId = authenticate(ctx);
 
-  return team;
+  try {
+    const team = await Team.findOne({ owner: userId });
+    team.pokemons.push(pokemonId);
+    await team.save();
+    return team;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 module.exports = {

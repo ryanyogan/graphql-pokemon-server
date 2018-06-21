@@ -49,5 +49,5 @@ type Mutation {
   # Adds a Pokemon to your team based on the Pokemon ID! Please note
   # that if you have more than 6 Pokemon (see: teamCount) you will
   # not be able to additional Pokemon until you remove one.
-  addPokemon(teamId: ID!, pokemonId: ID!): Team!
+  addPokemon(pokemonId: ID!): Team!
 }

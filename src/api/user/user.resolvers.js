@@ -25,7 +25,7 @@ const signup = async (_, { input: { email, password } }) => {
       if (err) throw err;
 
       const team = new Team({
-        name: `${email}'s Teamzzzzz`,
+        name: `${email}'s Team!`,
         owner: user._id,
       });
 
