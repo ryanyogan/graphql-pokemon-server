@@ -12,6 +12,10 @@ const teamSchema = new mongoose.Schema({
       ref: 'pokemon',
     },
   ],
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+  },
 });
 
 module.exports = mongoose.model('team', teamSchema);

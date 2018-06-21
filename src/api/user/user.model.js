@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
+  team: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'team',
+  },
 });
 
 module.exports = mongoose.model('user', userSchema);

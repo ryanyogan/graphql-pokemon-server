@@ -15,6 +15,7 @@ const serverOptions = {
 
 const server = new GraphQLServer(gqlServerConfig);
 
-server.start(serverOptions, ({ port }) =>
-  console.log(`Server on port ${port}`),
+server.start(
+  serverOptions,
+  ({ port }) => console.log(`Server on port ${port}`), // eslint-disable-line
 );

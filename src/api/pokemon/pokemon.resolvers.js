@@ -6,7 +6,10 @@
 // Module, the Resolver, the Context object, and do a full E2E pass...
 
 const pokemon = (_, { id }, ctx) =>
-  ctx.modules.pokemon.getPokemon({ id, pokemonModel: ctx.models.pokemon });
+  ctx.modules.pokemon.getPokemon({
+    id,
+    pokemonModel: ctx.models.pokemon,
+  });
 
 const allPokemons = (_, { limit = 20 }, ctx) =>
   ctx.modules.pokemon.getAllPokemon({

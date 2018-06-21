@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('./user.model');
+const Team = require('../team/team.model');
 
 const signup = async (_, { input: { email, password } }) => {
   // What is horribly wrong here?  Does it seem like a resolver should
@@ -14,7 +15,25 @@ const signup = async (_, { input: { email, password } }) => {
     }
 
     const _password = await bcrypt.hash(password, 10);
-    const user = await new User({ email, password: _password }).save();
+
+    const user = await new User({
+      email,
+      password: _password,
+    });
+
+    user.save(err => {
+      if (err) throw err;
+
+      const team = new Team({
+        name: `${email}'s Teamzzzzz`,
+        owner: user._id,
+      });
+
+      team.save(err => {
+        if (err) throw err;
+      });
+    });
+
     const token = jwt.sign({ userId: user._id }, 'sillysecret');
 
     return { token, user };
